@@ -1,15 +1,4 @@
-HelloWorld Servlet example with corresponding Dockerfile
 
-Use Maven Build first to create war file in Target folder.
+Hello World Spring Boot Application.
 
-mvn clean package
-
-Artifact will be created in target folder.
-
-docker build -t mavenbuild .
-
-Once this is done u will be see image using docker image
-
-Use below command to run the container
-
-docker run -d -p 8080:8080 --name dockercontainer mavenbuild
+Reference: https://github.com/goxr3plus/Simplest-Spring-Boot-Hello-World.git
