@@ -45,11 +45,11 @@
 		</dependency> -->
 
 	</dependencies>
-	  <distributionManagement>
+<distributionManagement>
     <snapshotRepository>
         <id>snapshots</id>
         <name>mylinux-snapshots</name>
-        <url>http://51.120.11.131:8081/artifactory/libs-snapshot-local</url>
+        <url>http://51.120.11.131:8081/artifactory/libs-snapshot</url>
     </snapshotRepository>
 </distributionManagement>
 </project>
