@@ -19,7 +19,7 @@
     <snapshotRepository>
         <id>snapshots</id>
         <name>mylinux-snapshots</name>
-        <url>http://20.197.19.142:8081/artifactory/libs-snapshot-local</url>
+        <url>http://20.197.19.142:8081/artifactory/libs-snapshot</url>
     </snapshotRepository>
 </distributionManagement>
 </project>
