@@ -22,7 +22,7 @@
         <url>http://20.197.19.142:8081/artifactory/libs-snapshot-local</url>
     </snapshotRepository>
 </distributionManagement>
-  <build>
+ /* <build>
     <finalName>MyWebApp</finalName>
-  </build>
+  </build>*/
 </project>
