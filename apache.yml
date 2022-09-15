@@ -15,8 +15,3 @@
       copy:
         src: index.html
         dest: /var/www/html/
-    - name: Here we are simply downloding a file from internet.
-      get_url:
-        url: http://52.231.111.181:8081/artifactory/libs-release/MyWebApp-1.0-SNAPSHOT.war
-        dest: /var/tmp
-        mode: '0755'
