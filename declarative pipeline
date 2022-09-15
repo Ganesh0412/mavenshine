@@ -1,0 +1,84 @@
+pipeline {
+    agent any
+	
+	tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "maven3"
+    }
+
+
+    environment {
+       JAVA_HOME="/"
+       PATH="/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin:/bin/java:/:/root/bin:/"
+    }
+    
+    stages {
+        stage('Clean workspace') {
+            steps {
+                // Get some code from a GitHub repository
+                cleanWs()
+            }
+        }
+        
+        stage('Git Clone') {
+            steps {
+                // Get some code from a GitHub repository
+                 git branch: 'ansible', credentialsId: 'privatekey', url: 'git@github.com:Ganesh0412/mavenshine.git'
+            }
+        }
+          
+        stage('Build') {
+            steps {
+              sh "mvn clean install -f MyWebApp/pom.xml "
+            }
+        }
+        
+        stage ('Artifactory'){
+            steps {
+               rtServer (
+                 id: "Artifactory",
+                 url: 'http://52.231.111.181:8081/artifactory',
+                 username: 'admin',
+                  password: 'password',
+                  bypassProxy: true,
+                   timeout: 300
+                        )
+            }
+        }
+        stage('Publish package'){
+            steps{
+                rtUpload (
+                 serverId:"Artifactory" ,
+                  spec: '''{
+                   "files": [
+                      {
+                      "pattern": "*.war",
+                      "target": "libs-release"
+                      }
+                            ]
+                           }''',
+                        )
+            }
+        }
+        stage ('Publish build info') {
+            steps {
+                rtPublishBuildInfo (
+                    serverId: "Artifactory"
+                )
+            }
+        }
+        stage('Deployment') {
+            steps {
+                // Get some code from a GitHub repository
+                 ansiblePlaybook become: true, credentialsId: 'privatekey', installation: 'ansible', inventory: 'dev.inv', playbook: 'apache.yml'
+            }
+        }
+          
+}
+        post {
+          always {
+           echo "Done with the first maven project"
+          }
+        
+    }
+}
