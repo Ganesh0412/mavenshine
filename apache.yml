@@ -15,3 +15,8 @@
       copy:
         src: index.html
         dest: /var/www/html/
+    - name: Download artifactory to some location
+      get_url:
+        url: http://52.231.111.181:8081/artifactory/libs-release/MyWebApp-1.0-SNAPSHOT.war
+        dest: /home/ganesh
+        mode: '0755'
