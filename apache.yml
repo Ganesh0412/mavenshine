@@ -1,5 +1,5 @@
 ---
-- hosts: albert 
+- hosts: all 
   become: True
   tasks:
     - name: Install packages
