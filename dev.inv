@@ -3,5 +3,5 @@ ansible_connection=ssh
 ansible_user=ganesh
 ansible_ssh_pass=ganeshganesh@123
 
-[demo]
+[albert]
 52.231.111.181
